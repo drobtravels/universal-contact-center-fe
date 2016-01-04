@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { RequireAuthentication } from './RequireAuthentication';
 
-export class Dashboard extends Component {
-
+class DashboardComp extends Component {
   render() {
     return(
       <div>
-        <h2>Universal Call Center</h2>
         <p> You are authenticated </p>
       </div>
     );
   }
 }
+
+export var Dashboard = RequireAuthentication(DashboardComp)
