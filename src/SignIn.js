@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 export class SignIn extends Component {
 
   showLock = () => {
-    this.props.lock.show()
+    this.props.lock.show({ authParams: {
+      scope: 'openid user_metadata email'
+    }});
   }
 
   render() {
