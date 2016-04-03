@@ -7,6 +7,12 @@ export var RequireAuthentication = ComposedComponent => class extends Component 
     this.setState({idToken: this.getIdToken()});
   }
 
+  signOut() {
+    console.log('signing out...');
+    localStorage.removeItem('userToken');
+    this.setState({idToken: null });
+  }
+
   getIdToken() {
     var idToken = localStorage.getItem('userToken');
     var authHash = this.lock.parseHash(window.location.hash);
@@ -24,9 +30,9 @@ export var RequireAuthentication = ComposedComponent => class extends Component 
 
   render() {
     if (this.state.idToken) {
-      return <ComposedComponent {...this.props} idToken={this.state.idToken} />;
+      return <ComposedComponent {...this.props} idToken={this.state.idToken} signOut={this.signOut} />;
     } else {
-      return ( <SignIn lock={this.lock} /> );
+      return ( <SignIn lock={this.lock}  /> );
     }
   }
 };

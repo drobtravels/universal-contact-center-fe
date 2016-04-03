@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 export class SignIn extends Component {
+  static propTypes = {
+    lock: React.PropTypes.object.isRequired
+  };
 
   showLock = () => {
     this.props.lock.show({ authParams: {
