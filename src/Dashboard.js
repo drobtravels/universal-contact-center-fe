@@ -14,7 +14,7 @@ class DashboardComp extends Component {
       <div>
         <p>
           <span>Task Router Status: </span>
-          <span>Offline</span>
+          <span>{this.props.taskWorker.activityName}</span>
         </p>
         <a href='' onClick={this.props.signOut}>Sign Out</a>
       </div>
