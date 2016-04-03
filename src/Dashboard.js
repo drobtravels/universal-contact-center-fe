@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import { RequireAuthentication } from './RequireAuthentication';
+import { ConnectToTwilio } from './ConnectToTwilio';
 
 class DashboardComp extends Component {
   static propTypes = {
     signOut: React.PropTypes.func.isRequired,
-    idToken: React.PropTypes.string.isRequired
+    idToken: React.PropTypes.string.isRequired,
+    taskWorker: React.PropTypes.object.isRequired
   };
 
   render() {
     return(
       <div>
-        <p> You are authenticated </p>
+        <p>
+          <span>Task Router Status: </span>
+          <span>Offline</span>
+        </p>
         <a href='' onClick={this.props.signOut}>Sign Out</a>
       </div>
     );
   }
 }
 
-export var Dashboard = RequireAuthentication(DashboardComp)
+export var Dashboard = RequireAuthentication(ConnectToTwilio(DashboardComp))
