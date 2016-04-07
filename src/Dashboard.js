@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { RequireAuthentication } from './RequireAuthentication';
 import { ConnectToTwilio } from './ConnectToTwilio';
 import { TaskRouterToggle } from './TaskRouterToggle';
+import { ReservationHandler } from './ReservationHandler'
 
 class DashboardComp extends Component {
   static propTypes = {
@@ -20,6 +21,7 @@ class DashboardComp extends Component {
         <TaskRouterToggle taskWorker={this.props.taskWorker} />
         <span>  |  </span>
         <a href='' onClick={this.props.signOut}>Sign Out</a>
+        <ReservationHandler taskWorker={this.props.taskWorker} />
       </div>
     );
   }
