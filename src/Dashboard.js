@@ -8,7 +8,8 @@ class DashboardComp extends Component {
   static propTypes = {
     signOut: React.PropTypes.func.isRequired,
     idToken: React.PropTypes.string.isRequired,
-    taskWorker: React.PropTypes.object.isRequired
+    workerData: React.PropTypes.object.isRequired,
+    workerAPI: React.PropTypes.object.isRequired
   };
 
   render() {
@@ -16,12 +17,12 @@ class DashboardComp extends Component {
       <div>
         <p>
           <span>Task Router Status: </span>
-          <span>{this.props.taskWorker.activityName}</span>
+          <span>{this.props.workerData.activityName}</span>
         </p>
-        <TaskRouterToggle taskWorker={this.props.taskWorker} />
+        <TaskRouterToggle taskWorker={this.props.workerData} />
         <span>  |  </span>
         <a href='' onClick={this.props.signOut}>Sign Out</a>
-        <ReservationHandler taskWorker={this.props.taskWorker} />
+        <ReservationHandler workerAPI={this.props.workerAPI} />
       </div>
     );
   }

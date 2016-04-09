@@ -22,12 +22,16 @@ class ReservationPresenter extends Component {
 
 export class ReservationHandler extends Component {
   static propTypes = {
-    taskWorker: React.PropTypes.object.isRequired
+    workerAPI: React.PropTypes.object.isRequired
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   componentWillMount() {
-    var worker = this.props.taskWorker;
-    console.log(worker);
+    var worker = this.props.workerAPI;
     worker.on('reservation.created', (reservation) => {
       this.setState({ reservation: reservation })
     });

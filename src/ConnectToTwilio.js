@@ -11,15 +11,16 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
     this.state = { worker: null };
   }
 
-  updateWorker = (worker) => {
-    this.setState({ worker: worker });
+  updateWorkerData = (worker) => {
+    this.setState({ workerData: worker });
   }
 
   setupWorker = (token) => {
     var worker = new Twilio.TaskRouter.Worker(token)
-    worker.on('ready', this.updateWorker);
-    worker.on('activity.update', this.updateWorker);
-    worker.on('attributes.update', this.updateWorker);
+    this.setState({workerAPI: worker });
+    worker.on('ready', this.updateWorkerData);
+    worker.on('activity.update', this.updateWorkerData);
+    worker.on('attributes.update', this.updateWorkerData);
     worker.on('token.expired', (worker) => {
       API.getTokens(this.props.idToken).then((tokens) => {
         worker.updateToken(tokens.taskRouter);
@@ -39,8 +40,8 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
   }
 
   render() {
-    if (this.state.worker) {
-      return <ComposedComponent {...this.props} taskWorker={this.state.worker} />;
+    if (this.state.workerData) {
+      return <ComposedComponent {...this.props} workerData={this.state.workerData} workerAPI={this.state.workerAPI} />;
     } else {
       return ( <span>Connecting to Twilio... </span> );
     }
