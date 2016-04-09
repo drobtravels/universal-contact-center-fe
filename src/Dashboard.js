@@ -19,10 +19,10 @@ class DashboardComp extends Component {
           <span>Task Router Status: </span>
           <span>{this.props.workerData.activityName}</span>
         </p>
+        <ReservationHandler workerAPI={this.props.workerAPI} />
         <TaskRouterToggle taskWorker={this.props.workerData} />
         <span>  |  </span>
         <a href='' onClick={this.props.signOut}>Sign Out</a>
-        <ReservationHandler workerAPI={this.props.workerAPI} />
       </div>
     );
   }

@@ -13,7 +13,7 @@ class ReservationPresenter extends Component {
       <div>
         <strong>New Reservation</strong>
         <p>
-          { this.props.task.attributes.type + 'from' + this.props.task.attributes.name }
+          { this.props.task.attributes.type + ' from ' + this.props.task.attributes.name }
         </p>
       </div>
     );
