@@ -26,6 +26,10 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
         worker.updateToken(tokens.taskRouter);
       })
     })
+    worker.on('reservation.accepted', (reservation) => {
+      console.log('reservation accepted');
+      this.setState({task: reservation.task});
+    })
   }
 
   setupTwilioClient = (token) => {

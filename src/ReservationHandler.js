@@ -15,6 +15,8 @@ class ReservationPresenter extends Component {
         <p>
           { this.props.task.attributes.type + ' from ' + this.props.task.attributes.name }
         </p>
+        <button onClick={this.props.onAccept}>Accept</button>
+        <button onClick={this.props.onReject}>Reject</button>
       </div>
     );
   }
@@ -35,10 +37,7 @@ export class ReservationHandler extends Component {
     worker.on('reservation.created', (reservation) => {
       this.setState({ reservation: reservation })
     });
-
-    worker.on('reservation.accepted', () => console.log('reservation accepted'));
     worker.on('reservation.rejected', () => console.log('reservation rejected'));
-
     worker.on('reservation.timeout', this.clearReservation);
     worker.on('reservation.rejected', this.clearReservation);
     worker.on('reservation.canceled', this.clearReservation);
@@ -52,11 +51,19 @@ export class ReservationHandler extends Component {
   }
 
   onAccept = () => {
-
+    console.log('accepting current reservation');
+    this.setState({reservation: null})
+    this.state.reservation.accept( (error, reservation) => {
+      if (error) {
+        console.error(error);
+      }
+    });
   }
 
   onReject = () => {
-
+    console.log('rejecting current reservation');
+    this.state.reservation.reject();
+    this.clearReservation(this.state.reservation)
   }
 
   render() {
