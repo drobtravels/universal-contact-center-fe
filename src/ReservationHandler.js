@@ -52,7 +52,7 @@ export class ReservationHandler extends Component {
 
   onAccept = () => {
     console.log('accepting current reservation');
-    this.setState({reservation: null})
+    this.clearReservation(this.state.reservation);
     this.state.reservation.accept( (error, reservation) => {
       if (error) {
         console.error(error);

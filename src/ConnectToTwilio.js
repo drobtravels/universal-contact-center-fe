@@ -8,7 +8,7 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { worker: null };
+    this.state = { worker: null, task: null };
   }
 
   updateWorkerData = (worker) => {
@@ -45,7 +45,7 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
 
   render() {
     if (this.state.workerData) {
-      return <ComposedComponent {...this.props} workerData={this.state.workerData} workerAPI={this.state.workerAPI} />;
+      return <ComposedComponent {...this.props} workerData={this.state.workerData} workerAPI={this.state.workerAPI} task={this.state.task}/>;
     } else {
       return ( <span>Connecting to Twilio... </span> );
     }
