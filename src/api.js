@@ -22,10 +22,6 @@ export var API = {
     })
       .then(checkStatus)
       .then( (response) => response.json())
-      .then( (result) => {
-        console.log(result);
-        return result.tokens
-
-      });
+      .then( (result) => result.tokens);
   }
 }
