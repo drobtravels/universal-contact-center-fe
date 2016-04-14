@@ -7,7 +7,7 @@ export var RequireAuthentication = ComposedComponent => class extends Component 
     this.setState({idToken: this.getIdToken()});
   }
 
-  signOut() {
+  signOut = () => {
     console.log('signing out...');
     localStorage.removeItem('userToken');
     this.setState({idToken: null });

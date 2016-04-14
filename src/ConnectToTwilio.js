@@ -3,7 +3,8 @@ import { API } from './api';
 
 export var ConnectToTwilio = ComposedComponent => class extends Component {
   static propTypes = {
-    idToken: React.PropTypes.string.isRequired
+    idToken: React.PropTypes.string.isRequired,
+    signOut: React.PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -37,9 +38,14 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
   }
 
   componentDidMount() {
-    API.getTokens(this.props.idToken).then((tokens) => {
+    API.getTokens(this.props.idToken)
+    .then((tokens) => {
       this.setupWorker(tokens.taskRouter);
       this.setupTwilioClient(tokens.twilioClient);
+    }, (error) => {
+      if(error.response.status === 401) {
+        this.props.signOut();
+      }
     });
   }
 
