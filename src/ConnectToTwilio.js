@@ -34,7 +34,12 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
   }
 
   setupTwilioClient = (token) => {
-
+    Twilio.Device.ready( () => console.log('connected to Twilio Client'));
+    Twilio.Device.incoming( (connection) => {
+      console.log('Receiving incoming call from Twilio Client');
+    });
+    Twilio.Device.connect( (connection) => this.setState({connection: connection }))
+    Twilio.Device.setup(token)
   }
 
   componentDidMount() {
@@ -51,7 +56,13 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
 
   render() {
     if (this.state.workerData) {
-      return <ComposedComponent {...this.props} workerData={this.state.workerData} workerAPI={this.state.workerAPI} task={this.state.task}/>;
+      return (
+        <ComposedComponent {...this.props}
+          workerData={this.state.workerData}
+          workerAPI={this.state.workerAPI}
+          task={this.state.task}
+          connection={this.state.connection} />
+      );
     } else {
       return ( <span>Connecting to Twilio... </span> );
     }
