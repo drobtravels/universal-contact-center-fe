@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Panel, Button, Col, Row } from 'react-bootstrap';
 
 class Task extends Component {
   static propTypes = {
@@ -9,9 +10,9 @@ class Task extends Component {
   render() {
     console.log(this.props.attributes);
     return(
-      <div>
-        <p>Working on task {this.props.sid}</p>
-      </div>
+      <Panel header={<h3>{this.props.attributes.type}</h3>}>
+        Working on task {this.props.sid}
+      </Panel>
     )
   }
 }
@@ -25,7 +26,7 @@ export class TaskDashboard extends Component {
     if(this.props.task) {
       return(<Task {...this.props.task} />);
     } else {
-      return(<div/>);
+      return(null);
     }
   }
 }

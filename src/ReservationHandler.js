@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Panel, Button, Col, Row } from 'react-bootstrap';
 
 class ReservationPresenter extends Component {
   static propTypes = {
@@ -10,14 +11,19 @@ class ReservationPresenter extends Component {
 
   render() {
     return(
-      <div>
-        <strong>New Reservation</strong>
-        <p>
+      <Panel header={<h3>New Reservation</h3>}>
+        <h4 className='text-center'>
           { this.props.task.attributes.type + ' from ' + (this.props.task.attributes.name || this.props.task.attributes.caller_name) }
-        </p>
-        <button onClick={this.props.onAccept}>Accept</button>
-        <button onClick={this.props.onReject}>Reject</button>
-      </div>
+        </h4>
+        <Row>
+          <Col xsOffset={2} xs={2}>
+            <Button onClick={this.props.onAccept} bsStyle='success'>Accept</Button>
+          </Col>
+          <Col xsOffset={3} xs={2}>
+            <Button onClick={this.props.onReject} bsStyle='danger'>Reject</Button>
+          </Col>
+        </Row>
+      </Panel>
     );
   }
 }

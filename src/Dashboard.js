@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { RequireAuthentication } from './RequireAuthentication';
 import { ConnectToTwilio } from './ConnectToTwilio';
+import { AppNavbar } from './AppNavbar';
 import { TaskRouterToggle } from './TaskRouterToggle';
-import { ReservationHandler } from './ReservationHandler'
-import { TaskDashboard } from './TaskDashboard'
+import { ReservationHandler } from './ReservationHandler';
+import { TaskDashboard } from './TaskDashboard';
+import { IdleSpinner } from './IdleSpinner';
+import { Col } from 'react-bootstrap';
 
 class DashboardComp extends Component {
   static propTypes = {
@@ -17,15 +20,12 @@ class DashboardComp extends Component {
   render() {
     return(
       <div>
-        <p>
-          <span>Task Router Status: </span>
-          <span>{this.props.workerData.activityName}</span>
-        </p>
-        <ReservationHandler workerAPI={this.props.workerAPI} />
-        <TaskDashboard task={this.props.task} />
-        <TaskRouterToggle taskWorker={this.props.workerData} />
-        <span>  |  </span>
-        <a href='' onClick={this.props.signOut}>Sign Out</a>
+        <AppNavbar signOut={this.props.signOut} workerData={this.props.workerData} />
+        <Col xsOffset={2} xs={8}>
+          <ReservationHandler workerAPI={this.props.workerAPI} />
+          <TaskDashboard task={this.props.task} />
+          <IdleSpinner workerData={this.props.workerData} />
+        </Col>
       </div>
     );
   }

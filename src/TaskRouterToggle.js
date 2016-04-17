@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { find } from 'lodash';
+import { Button } from 'react-bootstrap';
 
 export class TaskRouterToggle extends Component {
 
@@ -47,10 +48,18 @@ export class TaskRouterToggle extends Component {
   }
 
   render() {
-    return(
-      <button onClick={this.toggle}>
-        {this.buttonText()}
-      </button>
-    );
+    if(this.isOffline()) {
+      return(
+        <Button onClick={this.toggle} bsStyle='primary'>
+          Go Online
+        </Button>
+      );
+    } else {
+      return(
+        <Button onClick={this.toggle} bsStyle='danger'>
+          Go Offline
+        </Button>
+      );
+    }
   }
 }

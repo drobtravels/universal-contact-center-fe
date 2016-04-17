@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { AppNavbar } from './AppNavbar';
+import { Button } from 'react-bootstrap';
 
 export class SignIn extends Component {
   static propTypes = {
@@ -13,9 +15,14 @@ export class SignIn extends Component {
 
   render() {
     return (
-      <div className="login-box auth0-box before">
-        <p> Please Sign In to Proceed </p>
-        <button onClick={this.showLock}>Sign In</button>
+      <div>
+        <AppNavbar />
+        <div className="login-box auth0-box before">
+          <h2> Please Sign In to Proceed </h2>
+          <Button onClick={this.showLock} bsStyle='primary' bsSize='large'>
+            Sign In
+          </Button>
+        </div>
       </div>
     );
   }
