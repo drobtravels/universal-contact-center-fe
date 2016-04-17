@@ -13,7 +13,7 @@ class ReservationPresenter extends Component {
       <div>
         <strong>New Reservation</strong>
         <p>
-          { this.props.task.attributes.type + ' from ' + this.props.task.attributes.name }
+          { this.props.task.attributes.type + ' from ' + (this.props.task.attributes.name || this.props.task.attributes.caller_name) }
         </p>
         <button onClick={this.props.onAccept}>Accept</button>
         <button onClick={this.props.onReject}>Reject</button>
@@ -53,11 +53,16 @@ export class ReservationHandler extends Component {
   onAccept = () => {
     console.log('accepting current reservation');
     this.clearReservation(this.state.reservation);
-    this.state.reservation.accept( (error, reservation) => {
+    var checkForError = (error, reservation) => {
       if (error) {
         console.error(error);
       }
-    });
+    };
+    if(this.state.reservation.task.attributes.type === 'incoming_call') {
+      this.state.reservation.dequeue(checkForError);
+    } else {
+      this.state.reservation.accept(checkForError);
+    }
   }
 
   onReject = () => {

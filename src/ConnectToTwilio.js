@@ -37,9 +37,10 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
     Twilio.Device.ready( () => console.log('connected to Twilio Client'));
     Twilio.Device.incoming( (connection) => {
       console.log('Receiving incoming call from Twilio Client');
+      connection.accept();
     });
     Twilio.Device.connect( (connection) => this.setState({connection: connection }))
-    Twilio.Device.setup(token)
+    Twilio.Device.setup(token, {debug: true})
   }
 
   componentDidMount() {
