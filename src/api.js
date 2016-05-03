@@ -1,4 +1,4 @@
-let apiUrl = 'https://eln5sp9xaj.execute-api.us-east-1.amazonaws.com/prod/';
+let apiUrl = 'https://eln5sp9xaj.execute-api.us-east-1.amazonaws.com/prod/client/';
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -14,7 +14,7 @@ function checkStatus(response) {
 export var API = {
 
   getTokens(idToken)  {
-    return fetch(apiUrl + 'twilioTokens', {
+    return fetch(apiUrl + 'tokens', {
       headers: {
         'User-Token': idToken,
         'Content-Type': 'application/json'
