@@ -6,6 +6,7 @@ import { TaskRouterToggle } from './TaskRouterToggle';
 import { ReservationHandler } from './ReservationHandler';
 import { TaskDashboard } from './TaskDashboard';
 import { IdleSpinner } from './IdleSpinner';
+import { CallControls } from './CallControls';
 import { Col } from 'react-bootstrap';
 
 class DashboardComp extends Component {
@@ -14,6 +15,7 @@ class DashboardComp extends Component {
     idToken: React.PropTypes.string.isRequired,
     workerData: React.PropTypes.object.isRequired,
     workerAPI: React.PropTypes.object.isRequired,
+    phone: React.PropTypes.object,
     task: React.PropTypes.object
   };
 
@@ -25,6 +27,9 @@ class DashboardComp extends Component {
           <ReservationHandler workerAPI={this.props.workerAPI} />
           <TaskDashboard task={this.props.task} />
           <IdleSpinner workerData={this.props.workerData} />
+        </Col>
+        <Col xs={2}>
+          <CallControls phone={this.props.phone} />
         </Col>
       </div>
     );

@@ -40,6 +40,7 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
       connection.accept();
     });
     Twilio.Device.connect( (connection) => this.setState({connection: connection }))
+    Twilio.Device.disconnect( (connection) => this.setState({connection: null }))
     Twilio.Device.setup(token, {debug: true})
   }
 
@@ -62,7 +63,7 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
           workerData={this.state.workerData}
           workerAPI={this.state.workerAPI}
           task={this.state.task}
-          connection={this.state.connection} />
+          phone={this.state.connection} />
       );
     } else {
       return ( <span>Connecting to Twilio... </span> );
