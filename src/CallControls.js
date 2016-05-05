@@ -8,21 +8,18 @@ export class CallControls extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { muted: props.phone && props.phone.isMuted() }
-  }
-
-  componentWillMount() {
-    if(this.props.phone) {
-      this.props.phone.mute( (muted) => {
-        this.setState({ muted: muted });
-      })
-    }
+    this.state = { muted: false }
   }
 
   muteToggle = () => {
-    this.props.phone.mute(!this.state.muted)
+    var newMuteStatus = !this.state.muted
+    this.props.phone.mute(newMuteStatus)
+    this.setState({ muted: newMuteStatus})
   }
 
+  hangnup = () => {
+    this.props.phone.disconnect()
+  }
   render() {
     if(this.props.phone) {
       var muteButtonText
@@ -35,7 +32,7 @@ export class CallControls extends Component {
         <Panel header="On Call">
           <Button
             bsStyle='danger'
-            onClick={this.props.phone.disconnect}
+            onClick={this.hangnup}
             block>
               <Glyphicon glyph='phone-alt'>
                 Hangup
