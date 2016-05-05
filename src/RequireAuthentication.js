@@ -2,6 +2,8 @@ import React, { Component } from 'React';
 import { SignIn } from './SignIn';
 
 export var RequireAuthentication = ComposedComponent => class extends Component {
+  static displayName = 'RequireAuthenticationWrapper'
+  
   componentWillMount() {
     this.lock = new Auth0Lock('ii2ps5L5fhI4dR1WzNY9f0bZcRL8LNGg', 'universal-call-center.auth0.com');
     this.setState({idToken: this.getIdToken()});

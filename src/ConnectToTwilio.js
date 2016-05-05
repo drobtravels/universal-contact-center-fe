@@ -2,6 +2,7 @@ import React, { Component } from 'React';
 import { API } from './api';
 
 export var ConnectToTwilio = ComposedComponent => class extends Component {
+  static displayName = 'ConnectToTwilioWrapper'
   static propTypes = {
     idToken: React.PropTypes.string.isRequired,
     signOut: React.PropTypes.func.isRequired
