@@ -10,7 +10,7 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { worker: null, task: null };
+    this.state = { worker: null, task: null, activitySids: {} };
   }
 
   updateWorkerData = (worker) => {
@@ -31,6 +31,22 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
     worker.on('reservation.accepted', (reservation) => {
       console.log('reservation accepted');
       this.setState({task: reservation.task});
+    })
+    this.loadActivitySids(worker);
+  }
+
+  loadActivitySids = (worker) => {
+    worker.activities.fetch( (error, activities) => {
+      if(error) {
+        console.log(err);
+      }
+      else {
+        this.setState({ activitySids: activities.data.reduce((sids, activity) => {
+            sids[activity.friendlyName] = activity.sid
+            return(sids)
+          }, {})
+        });
+      }
     })
   }
 
@@ -57,6 +73,25 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
     });
   }
 
+  completeTask = () => {
+    // clear current task
+    this.setState({ task: null })
+
+    // hangup any current calls
+    if(this.state.connection) {
+      this.state.connection.disconnect()
+    }
+
+    // update task router activity
+    this.state.workerAPI.update({ ActivitySid: this.state.activitySids['Idle']}, (error, worker) => {
+      if(error) {
+        console.error(error)
+      } else {
+        console.log('Updated worker activity to Idle')
+      }
+    })
+  }
+
   render() {
     if (this.state.workerData) {
       return (
@@ -64,7 +99,9 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
           workerData={this.state.workerData}
           workerAPI={this.state.workerAPI}
           task={this.state.task}
-          phone={this.state.connection} />
+          phone={this.state.connection}
+          completeTask={this.completeTask}
+          activitySids={this.state.activitySids} />
       );
     } else {
       return ( <span>Connecting to Twilio... </span> );

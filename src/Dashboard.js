@@ -15,6 +15,8 @@ class DashboardComp extends Component {
     idToken: React.PropTypes.string.isRequired,
     workerData: React.PropTypes.object.isRequired,
     workerAPI: React.PropTypes.object.isRequired,
+    completeTask: React.PropTypes.func.isRequired,
+    activitySids: React.PropTypes.object.isRequired,
     phone: React.PropTypes.object,
     task: React.PropTypes.object
   };
@@ -22,10 +24,10 @@ class DashboardComp extends Component {
   render() {
     return(
       <div>
-        <AppNavbar signOut={this.props.signOut} workerData={this.props.workerData} />
+        <AppNavbar signOut={this.props.signOut} workerData={this.props.workerData} activitySids={this.props.activitySids} />
         <Col xsOffset={2} xs={8}>
           <ReservationHandler workerAPI={this.props.workerAPI} />
-          <TaskDashboard task={this.props.task} />
+          <TaskDashboard task={this.props.task} completeTask={this.props.completeTask}/>
           <IdleSpinner workerData={this.props.workerData} />
         </Col>
         <Col xs={2}>

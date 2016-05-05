@@ -17,7 +17,7 @@ function SignedInNav(props) {
         Task Router Status: {props.workerData.activityName}
       </NavItem>
       <NavItem>
-        <TaskRouterToggle taskWorker={props.workerData} workerAPI={props.workerData.workspace} />
+        <TaskRouterToggle taskWorker={props.workerData} activitySids={props.activitySids} />
       </NavItem>
       <NavItem pullRight onClick={props.signOut}>
         Sign Out
@@ -29,7 +29,8 @@ function SignedInNav(props) {
 export class AppNavbar extends Component {
   static propTypes = {
     signOut: React.PropTypes.func,
-    workerData: React.PropTypes.object
+    workerData: React.PropTypes.object,
+    activitySids: React.PropTypes.object
   }
 
   navItems = () => {

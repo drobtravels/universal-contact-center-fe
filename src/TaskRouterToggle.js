@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { find } from 'lodash';
 import { Button } from 'react-bootstrap';
-import { WithActivitySids} from './WithActivitySids';
 
-class TaskRouterToggleComp extends Component {
+export class TaskRouterToggle extends Component {
 
   static propTypes = {
     taskWorker: React.PropTypes.object.isRequired,
@@ -50,5 +49,3 @@ class TaskRouterToggleComp extends Component {
     }
   }
 }
-
-export var TaskRouterToggle = WithActivitySids(TaskRouterToggleComp)
