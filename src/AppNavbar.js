@@ -17,7 +17,7 @@ function SignedInNav(props) {
         Task Router Status: {props.workerData.activityName}
       </NavItem>
       <NavItem>
-        <TaskRouterToggle taskWorker={props.workerData} />
+        <TaskRouterToggle taskWorker={props.workerData} workerAPI={props.workerData.workspace} />
       </NavItem>
       <NavItem pullRight onClick={props.signOut}>
         Sign Out

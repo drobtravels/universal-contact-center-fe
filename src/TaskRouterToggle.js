@@ -1,30 +1,17 @@
 import React, { Component } from 'react';
 import { find } from 'lodash';
 import { Button } from 'react-bootstrap';
+import { WithActivitySids} from './WithActivitySids';
 
-export class TaskRouterToggle extends Component {
+class TaskRouterToggleComp extends Component {
 
   static propTypes = {
-    taskWorker: React.PropTypes.object.isRequired
+    taskWorker: React.PropTypes.object.isRequired,
+    activitySids: React.PropTypes.object.isRequired
   };
-
-  componentWillMount() {
-    this.props.taskWorker.workspace.activities.fetch( (error, activities) => {
-      if(error) {
-        console.log(err);
-      }
-      else {
-        this.setState({ activities: activities.data });
-      }
-    })
-  }
 
   isOffline = () => {
     return(this.props.taskWorker.activityName === 'Offline');
-  }
-
-  getActivitySid = (activityName) => {
-    return find(this.state.activities, (activity) => activity.friendlyName === activityName ).sid
   }
 
   buttonText = () => {
@@ -42,7 +29,7 @@ export class TaskRouterToggle extends Component {
     } else {
       newActivity = 'Offline';
     }
-    var activitiySid = this.getActivitySid(newActivity)
+    var activitiySid = this.props.activitySids[newActivity]
     console.log('setting worker to ', newActivity, activitiySid);
     this.props.taskWorker.update('ActivitySid', activitiySid);
   }
@@ -63,3 +50,5 @@ export class TaskRouterToggle extends Component {
     }
   }
 }
+
+export var TaskRouterToggle = WithActivitySids(TaskRouterToggleComp)
