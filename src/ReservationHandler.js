@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Panel, Button, Col, Row } from 'react-bootstrap';
+import { typeDescriptions } from './typeDescriptions';
 
 class ReservationPresenter extends Component {
   static propTypes = {
@@ -13,7 +14,7 @@ class ReservationPresenter extends Component {
     return(
       <Panel header={<h3>New Reservation</h3>}>
         <h4 className='text-center'>
-          { this.props.task.attributes.type + ' from ' + (this.props.task.attributes.name || this.props.task.attributes.caller_name) }
+          { typeDescriptions[this.props.task.attributes.type] + ' from ' + (this.props.task.attributes.name || this.props.task.attributes.caller_name || this.props.task.attributes.From) }
         </h4>
         <Row>
           <Col xsOffset={2} xs={2}>
