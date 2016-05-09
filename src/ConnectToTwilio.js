@@ -73,14 +73,24 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
     });
   }
 
-  completeTask = () => {
-    // clear current task
-    this.setState({ task: null })
-
+  completeTask = (params) => {
     // hangup any current calls
     if(this.state.connection) {
       this.state.connection.disconnect()
     }
+
+    // send a reply if desired
+    if(params && params.reply) {
+      console.log('replying to task with ', params.reply)
+      API.postSMS({
+        sid: null,
+        phone: null,
+        message: params.reply
+      })
+    }
+
+    // clear current task
+    this.setState({ task: null })
 
     // update task router activity
     this.state.workerAPI.update({ ActivitySid: this.state.activitySids['Idle']}, (error, worker) => {

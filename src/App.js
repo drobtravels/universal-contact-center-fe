@@ -9,7 +9,7 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <Grid>
+        <Grid fluid>
           <Dashboard />
         </Grid>
       </div>
