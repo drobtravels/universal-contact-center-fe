@@ -81,7 +81,11 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
         message: reply
       }, this.props.idToken)
     } else if (this.state.task.attributes.type === 'email') {
-      // TODO
+      API.postEmail({
+        email: this.state.tasks.attributes.from,
+        subject: 'RE: ' + this.state.tasks.attributes.subject,
+        message: reply
+      }, this.props.idToken)
     } else {
       console.warn('Attempted to reply to an unspported task type', this.state.task.attributes.type)
     }

@@ -36,5 +36,18 @@ export var API = {
       body: JSON.stringify(params)
     })
       .then(checkStatus)
+  },
+
+  postEmail(params, idToken) {
+    fetch(apiUrl + 'emails', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'User-Token': idToken
+      },
+      body: JSON.stringify(params)
+    })
+      .then(checkStatus)
   }
 }
