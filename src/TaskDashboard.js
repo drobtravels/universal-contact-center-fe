@@ -3,6 +3,7 @@ import { Panel, Button, Col, Row } from 'react-bootstrap';
 import { typeDescriptions } from './typeDescriptions';
 import { SmsMessageTask } from './SmsMessageTask';
 import { EmailTask } from './EmailTask';
+import { IncomingCallTask } from './IncomingCallTask';
 
 class Task extends Component {
   static propTypes = {
@@ -16,7 +17,10 @@ class Task extends Component {
       return(<SmsMessageTask  {...this.props} />)
     } else if (this.props.type === 'email') {
       return(<EmailTask {...this.props} />)
+    } else if (this.props.type === 'incoming_call') {
+      return(<IncomingCallTask {...this.props} />)
     } else {
+      console.error('Unrecongized task type!')
       return(null)
     }
   }
@@ -27,13 +31,6 @@ class Task extends Component {
         <Row>
           <Col xs={12}>
             {this.taskSpecificComponents()}
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <Button bsStyle='success' onClick={this.props.completeTask} >
-              Complete Task
-            </Button>
           </Col>
         </Row>
       </Panel>

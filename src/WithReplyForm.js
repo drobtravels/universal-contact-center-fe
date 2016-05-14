@@ -44,7 +44,7 @@ let ReplyButton = (props) => {
   return(
     <Button onClick={props.onClick} bsStyle="primary">
       <Glyphicon glyph="comment">
-        { props.show ? ' Hide' : ' Reply' }
+        { props.show ? ' Hide Reply' : ' Reply' }
       </Glyphicon>
     </Button>
   )

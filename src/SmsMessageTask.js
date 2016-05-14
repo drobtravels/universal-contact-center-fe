@@ -33,6 +33,9 @@ class SmsMessageTaskClass extends Component {
         <Button bsStyle="info" onClick={this.onCall}>
           <Glyphicon glyph="earphone"> Call</Glyphicon>
         </Button>
+        <Button bsStyle='warning' onClick={this.props.completeTask} >
+          Complete w/o Reply
+        </Button>
       </ButtonGroup>
       { this.props.replyForm }
     </form>)

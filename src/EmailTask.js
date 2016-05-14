@@ -31,6 +31,9 @@ class EmailTaskComp extends Component {
       </FormGroup>
       <ButtonGroup>
         {this.props.replyButton}
+        <Button bsStyle='warning' onClick={this.props.completeTask} >
+          Complete w/o Reply
+        </Button>
       </ButtonGroup>
       { this.props.replyForm }
     </form>)
