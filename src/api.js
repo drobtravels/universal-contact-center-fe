@@ -23,5 +23,18 @@ export var API = {
       .then(checkStatus)
       .then( (response) => response.json())
       .then( (result) => result.tokens);
+  },
+
+  postSMS(params, idToken) {
+    fetch(apiUrl + 'messages', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'User-Token': idToken
+      },
+      body: JSON.stringify(params)
+    })
+      .then(checkStatus)
   }
 }

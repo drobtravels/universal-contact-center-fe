@@ -73,6 +73,21 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
     });
   }
 
+  sendReply = (reply) => {
+    console.log('replying to task with ', reply)
+    if (this.state.task.attributes.type === 'sms_message') {
+      API.postSMS({
+        phone: this.state.task.attributes.fromPhone,
+        message: reply
+      }, this.props.idToken)
+    } else if (this.state.task.attributes.type === 'email') {
+      // TODO
+    } else {
+      console.warn('Attempted to reply to an unspported task type', this.state.task.attributes.type)
+    }
+
+  }
+
   completeTask = (params) => {
     // hangup any current calls
     if(this.state.connection) {
@@ -81,12 +96,7 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
 
     // send a reply if desired
     if(params && params.reply) {
-      console.log('replying to task with ', params.reply)
-      API.postSMS({
-        sid: null,
-        phone: null,
-        message: params.reply
-      })
+      this.sendReply(params.reply)
     }
 
     // clear current task
