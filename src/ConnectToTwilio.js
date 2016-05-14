@@ -82,8 +82,8 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
       }, this.props.idToken)
     } else if (this.state.task.attributes.type === 'email') {
       API.postEmail({
-        email: this.state.tasks.attributes.from,
-        subject: 'RE: ' + this.state.tasks.attributes.subject,
+        email: this.state.task.attributes.fromEmail,
+        subject: 'RE: ' + this.state.task.attributes.subject,
         message: reply
       }, this.props.idToken)
     } else {

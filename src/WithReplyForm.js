@@ -34,10 +34,8 @@ class ReplyForm extends Component {
 
 let ReplyFormWrapper = (props) => {
   if(props.show) {
-    console.log('reply form...')
     return(<ReplyForm {...props}/>)
   } else {
-    console.log('return null...')
     return(null)
   }
 }
