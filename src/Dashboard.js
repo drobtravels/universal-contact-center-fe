@@ -17,6 +17,7 @@ class DashboardComp extends Component {
     workerAPI: React.PropTypes.object.isRequired,
     completeTask: React.PropTypes.func.isRequired,
     activitySids: React.PropTypes.object.isRequired,
+    makeOutgoingCall: React.PropTypes.func.isRequired,
     phone: React.PropTypes.object,
     task: React.PropTypes.object
   };
@@ -27,7 +28,7 @@ class DashboardComp extends Component {
         <AppNavbar signOut={this.props.signOut} workerData={this.props.workerData} activitySids={this.props.activitySids} />
         <Col xsOffset={2} xs={8}>
           <ReservationHandler workerAPI={this.props.workerAPI} />
-          <TaskDashboard task={this.props.task} completeTask={this.props.completeTask}/>
+          <TaskDashboard task={this.props.task} completeTask={this.props.completeTask} makeOutgoingCall={this.props.makeOutgoingCall} />
           <IdleSpinner workerData={this.props.workerData} />
         </Col>
         <Col xs={2}>

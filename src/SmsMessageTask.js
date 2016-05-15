@@ -7,12 +7,9 @@ class SmsMessageTaskClass extends Component {
     From: React.PropTypes.string.isRequired,
     message: React.PropTypes.string.isRequired,
     completeTask: React.PropTypes.func.isRequired,
+    makeOutgoingCall: React.PropTypes.func.isRequired,
     replyButton: React.PropTypes.element.isRequired,
     replyForm: React.PropTypes.element
-  }
-
-  onCall = () => {
-    // TODO
   }
 
   render() {
@@ -30,7 +27,7 @@ class SmsMessageTaskClass extends Component {
       </FormGroup>
       <ButtonGroup>
         {this.props.replyButton}
-        <Button bsStyle="info" onClick={this.onCall}>
+        <Button bsStyle="info" onClick={this.props.makeOutgoingCall}>
           <Glyphicon glyph="earphone"> Call</Glyphicon>
         </Button>
         <Button bsStyle='warning' onClick={this.props.completeTask} >

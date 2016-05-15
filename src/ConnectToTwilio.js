@@ -116,6 +116,16 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
     })
   }
 
+  makeOutgoingCall = () => {
+    var attributes = this.state.task.attributes
+    if ( attributes.type !== 'sms_message' ) {
+      console.error('Cannot callback type of task ' + attributes.type)
+      return;
+    }
+    console.log('dialing out to ', attributes.fromPhone)
+    Twilio.Device.connect({ phone: attributes.fromPhone })
+  }
+
   render() {
     if (this.state.workerData) {
       return (
@@ -125,6 +135,7 @@ export var ConnectToTwilio = ComposedComponent => class extends Component {
           task={this.state.task}
           phone={this.state.connection}
           completeTask={this.completeTask}
+          makeOutgoingCall={this.makeOutgoingCall}
           activitySids={this.state.activitySids} />
       );
     } else {

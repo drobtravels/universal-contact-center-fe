@@ -9,7 +9,7 @@ class Task extends Component {
   static propTypes = {
     type: React.PropTypes.string.isRequired,
     completeTask: React.PropTypes.func.isRequired,
-    callback: React.PropTypes.func
+    makeOutgoingCall: React.PropTypes.func
   }
 
   taskSpecificComponents = () => {
@@ -41,13 +41,13 @@ class Task extends Component {
 export class TaskDashboard extends Component {
   static propTypes = {
     completeTask: React.PropTypes.func.isRequired,
-    callback: React.PropTypes.func,
+    makeOutgoingCall: React.PropTypes.func,
     task: React.PropTypes.object
   }
 
   render() {
     if(this.props.task) {
-      return(<Task {...this.props.task.attributes} completeTask={this.props.completeTask} callback={this.props.callback} />);
+      return(<Task {...this.props.task.attributes} completeTask={this.props.completeTask} makeOutgoingCall={this.props.makeOutgoingCall} />);
     } else {
       return(null);
     }
