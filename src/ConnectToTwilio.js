@@ -1,4 +1,4 @@
-import React, { Component } from 'React';
+import React, { Component } from 'react';
 import { API } from './api';
 
 export var ConnectToTwilio = ComposedComponent => class extends Component {
