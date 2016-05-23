@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+const BUILD_PATH = path.join(__dirname, 'build');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -8,9 +9,8 @@ module.exports = {
   ],
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: BUILD_PATH,
     filename: 'bundle.js',
-    publicPath: '/static/'
   },
 
   plugins: [
@@ -28,7 +28,7 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: BUILD_PATH,
     historyApiFallback: true,
     hot: true,
     inline: true,
@@ -36,7 +36,7 @@ module.exports = {
 
     // Display only errors to reduce the amount of output.
     stats: 'errors-only',
-    // host: 'localhost',
-    // port: 3000
+    host: 'localhost',
+    port: 3000
   }
 };
