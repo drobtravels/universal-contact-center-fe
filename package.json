@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "Frontend / UI for Universal Call Center demo",
   "scripts": {
-    "clean": "rimraf dist",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "build": "npm run clean && npm run build:webpack",
-    "start": "node devServer.js",
+    "build": "webpack",
+    "start": "webpack-dev-server",
     "lint": "eslint src"
   },
   "author": "David Roberts",
@@ -30,6 +28,7 @@
     "rimraf": "^2.4.3",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
+    "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
