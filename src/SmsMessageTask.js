@@ -20,7 +20,7 @@ class SmsMessageTaskClass extends Component {
       </FormGroup>
       <FormGroup controlId="formControlsEmail">
         <ControlLabel>Message</ControlLabel>
-        <FormControl.Static
+        <FormControl
           componentClass="textarea"
           value={this.props.message}
           readOnly />
