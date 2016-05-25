@@ -3,7 +3,7 @@
 
 User Interface / Frontend for a fully functional contact center which can handle phone calls, SMS messages, or e-mails.
 
-Demoed at [SIGNAL 2016](https://www.twilio.com/signal/schedule/6hw4T5PinKeYaEOUoWoAKS/building-a-universal-call-center-with-task-router-and-aws-lambda)
+Demoed at [SIGNAL 2016](https://www.twilio.com/signal/schedule/6hw4T5PinKeYaEOUoWoAKS/building-a-universal-call-center-with-task-router-and-aws-lambda).  Slides are [here](https://speakerdeck.com/droberts84/how-to-build-a-universal-contact-center-for-fun-and-profit)
 
 Backend code lives in [its own repository](https://github.com/droberts84/universal-contact-center-be)
 
